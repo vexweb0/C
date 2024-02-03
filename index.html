@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neumorphic Calculator</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 400px;
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 10px 10px 20px #c2c2c2, -10px -10px 20px #ffffff;
+    }
+
+    input {
+      grid-column: span 4;
+      padding: 15px;
+      font-size: 1.8em;
+      border: none;
+      border-radius: 10px;
+      box-shadow: inset 8px 8px 16px #c2c2c2, inset -8px -8px 16px #ffffff;
+      outline: none;
+      text-align: right;
+    }
+
+    .button {
+      padding: 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 6px 6px 12px #c2c2c2, -6px -6px 12px #ffffff;
+      transition: transform 0.1s ease-in-out;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    .operator {
+      background-color: #ff8c00;
+    }
+
+    .equal {
+      background-color: #27ae60;
+    }
+
+    .button:active {
+      box-shadow: inset 6px 6px 12px #c2c2c2, inset -6px -6px 12px #ffffff;
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly>
+
+    <button class="button" onclick="clearDisplay()">C</button>
+    <button class="button" onclick="appendToDisplay('÷')">÷</button>
+    <button class="button" onclick="appendToDisplay('×')">×</button>
+    <button class="button operator" onclick="appendToDisplay('-')">-</button>
+
+    <button class="button" onclick="appendToDisplay('7')">7</button>
+    <button class="button" onclick="appendToDisplay('8')">8</button>
+    <button class="button" onclick="appendToDisplay('9')">9</button>
+    <button class="button operator" onclick="appendToDisplay('+')">+</button>
+
+    <button class="button" onclick="appendToDisplay('4')">4</button>
+    <button class="button" onclick="appendToDisplay('5')">5</button>
+    <button class="button" onclick="appendToDisplay('6')">6</button>
+    <button class="button equal" onclick="calculate()">=</button>
+
+    <button class="button" onclick="appendToDisplay('1')">1</button>
+    <button class="button" onclick="appendToDisplay('2')">2</button>
+    <button class="button" onclick="appendToDisplay('3')">3</button>
+
+    <button class="button" onclick="appendToDisplay('0')">0</button>
+    <button class="button" onclick="appendToDisplay('.')">.</button>
+  </div>
+
+  <script>
+    function appendToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      try {
+        document.getElementById('display').value = eval(document.getElementById('display').value);
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
